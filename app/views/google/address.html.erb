@@ -1,0 +1,16 @@
+<h2>Find address</h2>
+
+<%=form_tag(google_address_path, method: :get) do %>
+
+	<label>Address:</label><br>
+	<%= text_area_tag :address, params[:address]%><br>
+
+	<%= submit_tag "search"%>
+
+<%end%>
+
+<%if !@result.nil?%>
+	<h3>lat:<%= @result["results"][0]["geometry"]["location"]["lat"]%></h3>
+	<h3>log:<%= @result["results"][0]["geometry"]["location"]["lng"]%></h3>
+	<h3>city:<%=  @result["results"][0]["address_components"][2]["long_name"]%></h3>
+	<%end%>
